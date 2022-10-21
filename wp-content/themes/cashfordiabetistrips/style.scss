@@ -1,0 +1,260 @@
+/**
+ * Theme Name: Cash For Diabetis Strips
+ */
+
+@import "assets/var/color";
+@import "assets/scss/bootstraproot/node_modules/bootstrap/scss/bootstrap.scss";
+
+@font-face {
+  font-family: Quicksand;
+  src: url("/asset/fonts/Quicksand-Regular.ttf");
+}
+
+@font-face {
+  font-family: Oswald;
+  src: url("/asset/fonts/Oswald-Regular.ttf");
+}
+
+body {
+  
+}
+
+.container {
+  max-width: 1200px;
+  font-family: Quicksand;
+}
+
+.logo {
+  height: 50px !important;
+}
+
+.top_nav {
+  color: map-get($map: $my_blue, $key: c1);
+  .nav-item {
+    margin: 0 5px;
+  }
+  a:link,
+  a:visited {
+    color: map-get($map: $my_blue, $key: c1);
+    font-size: 14px;
+  }
+}
+
+.bottom_nav {
+  .nav-item {
+    margin: 0 5px;
+  }
+  a:link,
+  a:visited {
+    color: #000;
+    font-size: 14px;
+  }
+}
+
+#top_categories {
+  span {
+    display: block;
+    color: #fff;    
+    font-size: 26px;
+    background-color: #02547d;
+    padding: 0.25em 0.5em;
+  }
+  ul {
+    list-style-type: none;
+    background-color: #f1f1f1;
+    li {
+      padding: 0.5em 0;
+      a:link,
+      a:visited {
+        color: #515151;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+#home-carousel {
+  .carousel-inner {
+    height: 100%;
+  }
+}
+
+.carousel-item img {
+  width: 100%;
+}
+
+#site_logo{
+  width: 250px;  
+}
+
+#page_products_to_sell {
+  .card {
+    .expiration_date {
+      background-color: map-get($my_green, c1);
+      color: #fff;
+      font-size: 16px;
+    }
+    .title {
+      font-family: Oswald;
+      font-weight: bold;
+      font-size: 26px;
+      height: 8rem;
+    }
+  }
+  input[name="submit"] {
+    font-size: 26px;
+    background-color: map-get($map: $my_green, $key: c1);
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  #page_products_to_sell {
+    input[name="submit"] {
+      font-size: 26px;
+      background-color: map-get($map: $my_green, $key: c1);
+      width: 25%;
+    }
+  }
+}
+
+#brands_we_buy {
+  font-family: Oswald;
+  background-color: transparent;
+  h1 span:first-child {
+    color: map-get($my_blue, c1);
+  }
+  h1 span:last-child {
+    color: map-get($my_green, c1);
+  }
+  h1 span {
+    font-size: 50px;
+  }
+  h1,
+  p {
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}
+
+#page_brands_we_buy {
+  .card {
+    min-height: auto;
+    height: 85%;
+  }
+  .card .title {
+    font-family: Oswald;
+    font-weight: bold;
+    font-size: 22px;
+  }
+  .breakdown div {
+    padding: 5px;
+  }
+  .card-body {
+    padding: 0.5rem;
+    .col-* {
+      padding: 5px;
+    }
+  }
+  .card + .sell_product_btn {
+    border-radius: 30px;
+    background-color: map-get($map: $my_green, $key: c1);
+    border-color: transparent;
+  }
+}
+
+#products-to-sell-carousel{
+  min-height: 100%;
+}
+
+#user_panel {
+  .list-group-item {
+    border: none;
+    border-bottom: 1px solid map-get($map: $my_gray, $key: c1);
+  }
+}
+
+#my_account_content {
+  h1 {
+    border-bottom: 1px solid map-get($map: $my_gray, $key: c1);
+    margin-bottom: 20px;
+  }
+}
+
+.form-group {
+  input {
+    border-radius: 0;
+  }
+}
+
+a:link,
+a:visited {
+  color: black;
+}
+
+a:focus,
+a:hover,
+a:active {
+  color: black;
+}
+
+.breakdown {
+  font-size: 0.75em;
+  input {
+    width: 100%;
+  }
+  div span {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.page-numbers:not(.dots){
+  display: inline-block;
+  padding: 5px 10px;  
+  background: theme-color("green-c2");
+  color: #ffff;
+  text-decoration: none;
+  &.current {
+    background: theme-color-level("green-c2", 3);
+  }
+  &:link, &:visited{
+    color: #ffff;    
+  }
+  &:hover, &:active, &:focus{
+    background: theme-color-level("green-c2", 1.5);
+  }
+}
+
+footer {
+  background-color: map-get($map: $my_green, $key: c1);
+  color: #fff;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 1.25em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  a:link,
+  a:visited {
+    color: white;
+  }
+
+  a:focus,
+  a:hover,
+  a:active {
+    color: white;
+  }
+}

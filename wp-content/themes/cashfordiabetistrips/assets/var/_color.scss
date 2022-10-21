@@ -1,0 +1,24 @@
+$my_black: (
+    c1: rgb(33, 37, 41)
+);
+
+$my_blue: (
+    c1: #02547d
+);
+
+$my_green: (
+    c1: #00c2a1,
+    c2: #96c346,
+);
+
+$my_gray: (
+    c1: #e0dede
+);
+
+$theme-colors:(
+    "green-c1": map-get($map: $my_green, $key: c1) ,
+    "green-c2": map-get($map: $my_green, $key: c2) ,
+    "gray-c1": map-get($map: $my_gray, $key: c1),
+    "blue-c1": map-get($map: $my_blue, $key: c1),
+
+);

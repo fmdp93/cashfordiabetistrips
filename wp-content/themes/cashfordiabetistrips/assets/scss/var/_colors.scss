@@ -1,0 +1,52 @@
+$blacks: (
+c1: #333
+);
+
+$greens: (
+c1: #00B26A,
+c2: #00A550,
+c3: #3FB149,
+c4: #d9ead0,
+);
+
+$browns: (
+    c1: #A87B4F,
+);
+
+.green-c1{
+    background-color: map-get($greens, c1);
+    color: #fff;
+}
+
+.green-bg-c1{
+    background-color: map-get($greens, c1);
+    color: #fff;
+}
+
+.black-c1{
+    background-color: map-get($blacks, c1);
+    color: #fff;
+}
+
+.green-c1:hover{
+    background-color: map-get($greens, c2);
+    color: #fff;
+}
+
+.green-c2{
+    background-color: map-get($greens, c2);
+    color: #fff;
+}
+
+.green-c2:hover{
+    background-color: map-get($greens, c3);
+    color: #fff;
+}
+
+.text-green-c1{
+    color: map-get($greens, c1);
+}
+
+.text-brown-c1{
+    color: map-get($browns, c1);
+}

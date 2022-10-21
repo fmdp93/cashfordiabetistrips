@@ -1,0 +1,116 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Aug 16, 2019, 10:13:45 AM
+    Author     : Francis
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Aug 19, 2019, 6:37:20 PM
+    Author     : Francis
+*/
+.grid-container {
+  flex-flow: column;
+}
+
+.grid-container > div:nth-of-type(2) {
+  flex: 1;
+}
+
+.grid {
+  width: 100%;
+  height: 100%;
+  min-height: 650px;
+  display: grid;
+  padding-bottom: 10px;
+  grid-gap: 10px;
+  /*align-content: start;*/
+}
+.grid .item {
+  height: 100%;
+  width: 100%;
+  /*        box-shadow: $box-shadow;*/
+}
+
+.green-c1 {
+  background-color: #00B26A;
+  color: #fff;
+}
+
+.green-bg-c1 {
+  background-color: #00B26A;
+  color: #fff;
+}
+
+.black-c1 {
+  background-color: #333;
+  color: #fff;
+}
+
+.green-c1:hover {
+  background-color: #00A550;
+  color: #fff;
+}
+
+.green-c2 {
+  background-color: #00A550;
+  color: #fff;
+}
+
+.green-c2:hover {
+  background-color: #3FB149;
+  color: #fff;
+}
+
+.text-green-c1 {
+  color: #00B26A;
+}
+
+.text-brown-c1 {
+  color: #A87B4F;
+}
+
+.relative-margin-top {
+  height: 10%;
+  width: 100px;
+}
+@media (min-width: 576px) {
+  .relative-margin-top {
+    height: 20%;
+  }
+}
+
+.display-block {
+  display: block !important;
+}
+
+.modal {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#ref-link {
+  cursor: pointer;
+}
+
+#fb_share_btn:hover {
+  color: #00A550;
+}
+
+#blog-post-container {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+#blog-post-container .blog-post {
+  flex: 1 0 auto;
+}
+#blog-post-container .links {
+  flex-shrink: 0;
+}

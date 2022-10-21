@@ -1,0 +1,51 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Sep 4, 2019, 10:37:50 PM
+    Author     : Francis
+*/
+
+.font-size-1n25x{
+    font-size: 125%;
+}
+
+.font-size-1n5x{
+    font-size: 100%;
+    @include md{
+        font-size: 150%;
+    }
+}
+
+.font-size-2x{
+    font-size: 100%;
+    @include md{
+        font-size: 200%;
+    }
+}
+
+.font-size-3x{
+    font-size: 150%;
+    @include md{
+        font-size: 300%;
+    }
+}
+
+.font-size-4x{
+    font-size: 200%;
+    @include md{
+        font-size: 400%;
+    }
+}
+
+.font-size-5x{
+    font-size: 200%;
+    @include sm{
+        font-size: 300%;
+    }
+    @include xl{
+        font-size: 500%;
+    }
+}

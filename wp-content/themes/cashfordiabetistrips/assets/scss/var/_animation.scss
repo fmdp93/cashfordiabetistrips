@@ -1,0 +1,47 @@
+@mixin slideUpWhenScrollDownProps {
+  transform: translateY(300px);
+}
+
+.come-in {
+  animation: come-in 0.8s ease forwards;  
+}
+.come-in:nth-of-type(1) {
+  animation-duration: 0.6s;
+}
+.come-in:nth-of-type(2) {
+  animation-duration: 0.8s;
+}
+.come-in:nth-of-type(3) {
+  animation-duration: 1s;
+}
+.come-in:nth-of-type(4) {
+  animation-duration: 1.2s;
+}
+.come-in:nth-of-type(5) {
+  animation-duration: 0.6s;
+}
+.come-in:nth-of-type(6) {
+  animation-duration: 0.8s;
+}
+.come-in:nth-of-type(7) {
+  animation-duration: 1s;
+}
+.come-in:nth-of-type(8) {
+  animation-duration: 1.2s;
+}
+
+@keyframes come-in {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.overlay-come-in {
+  animation: overlay-come-in 0.5s ease forwards;
+}
+
+@keyframes overlay-come-in{
+  to{    
+    opacity: 0.7;
+  }
+}

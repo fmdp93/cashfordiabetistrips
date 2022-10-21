@@ -1,0 +1,16 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Cashfordiabetistrips\\": "wp-content/themes/cashfordiabetistrips/classes",
+            "CashfordiabetistripsPlugin\\": "wp-content/plugins/cashfordiabetistrips/classes",
+            "App\\": "src"
+        },
+        "psr-0": {"App\\": "src"},
+        "files": [
+             "src/constants.php"
+        ]
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.3"
+    }
+}

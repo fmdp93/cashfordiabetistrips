@@ -1,0 +1,9 @@
+Todo
+
+* upload all products
+* create all pages for links in the website
+* USPS shipping return label
+* upload to hosting
+* learn SEO & advertisement
+* user validation in products-to-sell page
+* user features
