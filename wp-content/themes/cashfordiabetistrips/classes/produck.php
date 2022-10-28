@@ -4,8 +4,6 @@ namespace Cashfordiabetistrips;
 
 use App\Model\produck as ModelProduct;
 
-require 'src/model/produck.php';
-
 class produck
 {
     public function __construct()
@@ -13,8 +11,6 @@ class produck
         global $wpdb;
         $this->wpdb = $wpdb;
         
-$classes = get_declared_classes();
-print_r($classes);
         $this->ModelProduct = new ModelProduct();
         $this->ProductForm = new ProductForm($this);
 

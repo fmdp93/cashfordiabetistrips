@@ -6,7 +6,7 @@ use App\Classes\Session;
 use App\Classes\Validation;
 use App\Model\User as ModelUser;
 use Cashfordiabetistrips\Interfaces\Form;
-use Cashfordiabetistrips\traits\TraitUserForm;
+use Cashfordiabetistrips\Traits\TraitUserForm;
 
 class EditAccountForm implements Form
 {

@@ -6,7 +6,7 @@ use App\Classes\Session;
 use Cashfordiabetistrips\Interfaces\Form;
 use App\Classes\Validation;
 use Cashfordiabetistrips\ProductMailing;
-use Cashfordiabetistrips\traits\TraitUserForm;
+use Cashfordiabetistrips\Traits\TraitUserForm;
 use stdClass;
 
 class ProductForm implements Form
