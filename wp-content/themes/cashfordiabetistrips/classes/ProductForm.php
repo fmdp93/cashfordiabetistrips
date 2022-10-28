@@ -12,13 +12,13 @@ use stdClass;
 class ProductForm implements Form
 {
     use TraitUserForm;
-    public function __construct(produck $produck)
+    public function __construct(Product $Product)
     {
         global $wpdb;
         $this->wpdb = $wpdb;
 
         $this->session = new Session();
-        $this->produck = $produck;
+        $this->Product = $Product;
         $this->products_to_sell_action = home_url('products-to-sell');
         // $this->USPSReturnLabel = new USPSReturnLabel();
         $this->html_error = json_decode(urldecode($_COOKIE['error_message'] ?? ''), true);
@@ -43,17 +43,17 @@ class ProductForm implements Form
         // $label = $this->USPSReturnLabel->get_response($url);
         if (isset($_GET['model'])) {
             "WHERE brand = {$_GET['model']}";
-            $prepare = $this->produck->wpdb->prepare("SELECT * FROM products WHERE model = %d", $_GET['model']);
-            $products = $this->produck->wpdb->get_results($prepare);
+            $prepare = $this->Product->wpdb->prepare("SELECT * FROM products WHERE model = %d", $_GET['model']);
+            $products = $this->Product->wpdb->get_results($prepare);
         } else {
-            $products = $this->produck->ModelProduct->get_products();
+            $products = $this->Product->ModelProduct->get_products();
         }
         return include get_stylesheet_directory() . '/template-parts/product.php';
     }
 
     public function the_view()
     {
-        $products = $this->produck->ModelProduct->get_products();
+        $products = $this->Product->ModelProduct->get_products();
 
         return include get_stylesheet_directory() . '/template-parts/product-form.php';
     }
@@ -184,13 +184,13 @@ class ProductForm implements Form
         }
 
         foreach ($_POST['product_id'] as $key => $val) {
-            $prep = $this->produck->wpdb->prepare(
+            $prep = $this->Product->wpdb->prepare(
                 "SELECT COUNT(*) FROM products WHERE id = %d && name = %s && price = %f",
                 $val,
                 $_POST['product_name'][$key],
                 $_POST['price'][$key]
             );
-            $result_count = $this->produck->wpdb->get_var($prep);
+            $result_count = $this->Product->wpdb->get_var($prep);
             if ($result_count == 0) {
                 // product info was modified
                 $this->error['product_error'] = "Product was modified";
