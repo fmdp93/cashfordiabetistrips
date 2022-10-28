@@ -4,7 +4,7 @@ namespace Cashfordiabetistrips;
 
 use App\Model\Product as ModelProduct;
 
-class produck
+class Product
 {
     public function __construct()
     {
