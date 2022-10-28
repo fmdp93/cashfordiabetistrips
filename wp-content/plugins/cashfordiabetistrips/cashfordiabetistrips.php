@@ -6,7 +6,7 @@
  */
 
 use CashfordiabetistripsPlugin\Admin;
-use Cashfordiabetistrips\produck;
+use Cashfordiabetistrips\Product;
 
 require_once ABSPATH . 'vendor/autoload.php';
 
@@ -53,7 +53,7 @@ final class Cashfordiabetistrips
 
     private function initialize_classes(){
         $this->Admin = new Admin($this);
-        $this->produck = new produck($this);        
+        $this->Product = new Product($this);        
     }    
 }
 
