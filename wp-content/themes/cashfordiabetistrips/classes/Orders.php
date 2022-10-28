@@ -4,7 +4,7 @@ namespace Cashfordiabetistrips;
 
 use App\Classes\Pagination;
 use App\Classes\Session;
-use App\Model\produck as ModelProduct;
+use App\Model\Product as ModelProduct;
 
 class Orders
 {
