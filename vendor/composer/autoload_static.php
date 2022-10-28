@@ -59,6 +59,7 @@ class ComposerStaticInit7f9176f2b2d9e64d9b84e774580bb744
         'App\\Classes\\Pagination' => __DIR__ . '/../..' . '/src/Classes/Pagination.php',
         'App\\Classes\\Session' => __DIR__ . '/../..' . '/src/Classes/Session.php',
         'App\\Classes\\Validation' => __DIR__ . '/../..' . '/src/Classes/Validation.php',
+        'App\\Model\\Product' => __DIR__ . '/../..' . '/src/Model/Product.php',
         'App\\Model\\User' => __DIR__ . '/../..' . '/src/Model/User.php',
         'CashfordiabetistripsPlugin\\Admin' => __DIR__ . '/../..' . '/wp-content/plugins/cashfordiabetistrips/classes/Admin.php',
         'CashfordiabetistripsPlugin\\Validation' => __DIR__ . '/../..' . '/wp-content/plugins/cashfordiabetistrips/classes/Validation.php',

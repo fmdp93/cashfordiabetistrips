@@ -9,6 +9,7 @@ return array(
     'App\\Classes\\Pagination' => $baseDir . '/src/Classes/Pagination.php',
     'App\\Classes\\Session' => $baseDir . '/src/Classes/Session.php',
     'App\\Classes\\Validation' => $baseDir . '/src/Classes/Validation.php',
+    'App\\Model\\Product' => $baseDir . '/src/Model/Product.php',
     'App\\Model\\User' => $baseDir . '/src/Model/User.php',
     'CashfordiabetistripsPlugin\\Admin' => $baseDir . '/wp-content/plugins/cashfordiabetistrips/classes/Admin.php',
     'CashfordiabetistripsPlugin\\Validation' => $baseDir . '/wp-content/plugins/cashfordiabetistrips/classes/Validation.php',
