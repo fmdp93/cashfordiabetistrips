@@ -1,7 +1,7 @@
 <?php
 
 use Cashfordiabetistrips\Setup;
-use Cashfordiabetistrips\produck;
+use Cashfordiabetistrips\Product;
 use Cashfordiabetistrips\User;
 
 require_once ABSPATH . 'vendor/autoload.php';
@@ -18,5 +18,5 @@ function randomPassword() {
 }
 
 $Setup = new Setup();
-$produck = new produck();
+$Product = new Product();
 $User = new User();
