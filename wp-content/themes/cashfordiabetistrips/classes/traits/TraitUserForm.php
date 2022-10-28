@@ -1,6 +1,6 @@
 <?php
 
-namespace Cashfordiabetistrips\traits;
+namespace Cashfordiabetistrips\Traits;
 
 trait TraitUserForm
 {

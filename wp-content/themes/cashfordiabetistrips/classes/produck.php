@@ -2,7 +2,9 @@
 
 namespace Cashfordiabetistrips;
 
-use \App\Model\produck as ModelProduct;
+use App\Model\produck as ModelProduct;
+
+require 'src/model/produck.php';
 
 class produck
 {
@@ -10,6 +12,9 @@ class produck
     {
         global $wpdb;
         $this->wpdb = $wpdb;
+        
+$classes = get_declared_classes();
+print_r($classes);
         $this->ModelProduct = new ModelProduct();
         $this->ProductForm = new ProductForm($this);
 
