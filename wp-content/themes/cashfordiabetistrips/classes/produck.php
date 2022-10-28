@@ -2,7 +2,7 @@
 
 namespace Cashfordiabetistrips;
 
-use App\Model\produck as ModelProduct;
+use App\Model\Product as ModelProduct;
 
 class produck
 {
