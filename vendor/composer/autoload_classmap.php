@@ -10,7 +10,6 @@ return array(
     'App\\Classes\\Session' => $baseDir . '/src/Classes/Session.php',
     'App\\Classes\\Validation' => $baseDir . '/src/Classes/Validation.php',
     'App\\Model\\User' => $baseDir . '/src/Model/User.php',
-    'App\\Model\\produck' => $baseDir . '/src/Model/produck.php',
     'CashfordiabetistripsPlugin\\Admin' => $baseDir . '/wp-content/plugins/cashfordiabetistrips/classes/Admin.php',
     'CashfordiabetistripsPlugin\\Validation' => $baseDir . '/wp-content/plugins/cashfordiabetistrips/classes/Validation.php',
     'Cashfordiabetistrips\\EditAccountForm' => $baseDir . '/wp-content/themes/cashfordiabetistrips/classes/EditAccountForm.php',
