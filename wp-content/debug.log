@@ -1,0 +1,30 @@
+[09-Nov-2022 09:43:33 UTC] PHP Warning:  An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in /srv/htdocs/cashfordiabetistrips/wp-includes/update.php on line 577
+[09-Nov-2022 09:43:33 UTC] PHP Stack trace:
+[09-Nov-2022 09:43:33 UTC] PHP   1. {main}() /srv/htdocs/cashfordiabetistrips/wp-admin/themes.php:0
+[09-Nov-2022 09:43:33 UTC] PHP   2. require_once() /srv/htdocs/cashfordiabetistrips/wp-admin/themes.php:10
+[09-Nov-2022 09:43:33 UTC] PHP   3. do_action($tag = 'load-themes.php') /srv/htdocs/cashfordiabetistrips/wp-admin/admin.php:367
+[09-Nov-2022 09:43:33 UTC] PHP   4. WP_Hook->do_action($args = [0 => '']) /srv/htdocs/cashfordiabetistrips/wp-includes/plugin.php:478
+[09-Nov-2022 09:43:33 UTC] PHP   5. WP_Hook->apply_filters($value = '', $args = [0 => '']) /srv/htdocs/cashfordiabetistrips/wp-includes/class-wp-hook.php:312
+[09-Nov-2022 09:43:33 UTC] PHP   6. wp_update_themes($extra_stats = '') /srv/htdocs/cashfordiabetistrips/wp-includes/class-wp-hook.php:288
+[09-Nov-2022 09:43:33 UTC] PHP   7. trigger_error($message = 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.)', $error_type = 512) /srv/htdocs/cashfordiabetistrips/wp-includes/update.php:577
+[09-Nov-2022 09:49:29 UTC] PHP Warning:  An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in /srv/htdocs/cashfordiabetistrips/wp-includes/update.php on line 388
+[09-Nov-2022 09:49:29 UTC] PHP Stack trace:
+[09-Nov-2022 09:49:29 UTC] PHP   1. {main}() /srv/htdocs/cashfordiabetistrips/wp-admin/plugins.php:0
+[09-Nov-2022 09:49:29 UTC] PHP   2. require_once() /srv/htdocs/cashfordiabetistrips/wp-admin/plugins.php:10
+[09-Nov-2022 09:49:29 UTC] PHP   3. do_action($tag = 'load-plugins.php') /srv/htdocs/cashfordiabetistrips/wp-admin/admin.php:367
+[09-Nov-2022 09:49:29 UTC] PHP   4. WP_Hook->do_action($args = [0 => '']) /srv/htdocs/cashfordiabetistrips/wp-includes/plugin.php:478
+[09-Nov-2022 09:49:29 UTC] PHP   5. WP_Hook->apply_filters($value = '', $args = [0 => '']) /srv/htdocs/cashfordiabetistrips/wp-includes/class-wp-hook.php:312
+[09-Nov-2022 09:49:29 UTC] PHP   6. wp_update_plugins($extra_stats = '') /srv/htdocs/cashfordiabetistrips/wp-includes/class-wp-hook.php:288
+[09-Nov-2022 09:49:29 UTC] PHP   7. trigger_error($message = 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.)', $error_type = 512) /srv/htdocs/cashfordiabetistrips/wp-includes/update.php:388
+[09-Nov-2022 09:49:32 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /srv/htdocs/cashfordiabetistrips/wp-includes/update.php:388) in /srv/htdocs/cashfordiabetistrips/wp-admin/admin-header.php on line 9
+[09-Nov-2022 09:49:32 UTC] PHP Stack trace:
+[09-Nov-2022 09:49:32 UTC] PHP   1. {main}() /srv/htdocs/cashfordiabetistrips/wp-admin/plugins.php:0
+[09-Nov-2022 09:49:32 UTC] PHP   2. require_once() /srv/htdocs/cashfordiabetistrips/wp-admin/plugins.php:481
+[09-Nov-2022 09:49:32 UTC] PHP   3. header($header = 'Content-Type: text/html; charset=UTF-8') /srv/htdocs/cashfordiabetistrips/wp-admin/admin-header.php:9
+[09-Nov-2022 10:21:09 UTC] PHP Notice:  Undefined variable: status_code in /srv/htdocs/cashfordiabetistrips/wp-content/plugins/cashfordiabetistrips/classes/Admin.php on line 106
+[09-Nov-2022 10:21:09 UTC] PHP Stack trace:
+[09-Nov-2022 10:21:09 UTC] PHP   1. {main}() /srv/htdocs/cashfordiabetistrips/wp-admin/admin.php:0
+[09-Nov-2022 10:21:09 UTC] PHP   2. do_action($tag = 'admin_action_cashfordiabetistrips_add_product_action') /srv/htdocs/cashfordiabetistrips/wp-admin/admin.php:401
+[09-Nov-2022 10:21:09 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) /srv/htdocs/cashfordiabetistrips/wp-includes/plugin.php:478
+[09-Nov-2022 10:21:09 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) /srv/htdocs/cashfordiabetistrips/wp-includes/class-wp-hook.php:312
+[09-Nov-2022 10:21:09 UTC] PHP   5. CashfordiabetistripsPlugin\Admin->submit('') /srv/htdocs/cashfordiabetistrips/wp-includes/class-wp-hook.php:288

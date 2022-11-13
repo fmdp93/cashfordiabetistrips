@@ -12,7 +12,7 @@ if (!class_exists('Setup')) {
             $this->init_constants();
             add_action('init', array($this, 'theme_supports'));
             add_filter('pre_get_document_title', array($this, 'change_the_title'));
-            add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
+            add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));            
             add_action('template_redirect', array($this, 'redirects'));
         }
 
@@ -33,6 +33,7 @@ if (!class_exists('Setup')) {
 
         public function enqueue_scripts()
         {
+            // wp_enqueue_script("jquery");
             wp_enqueue_style(
                 'style',
                 get_template_directory_uri() . '/style.css',
@@ -47,12 +48,12 @@ if (!class_exists('Setup')) {
             wp_enqueue_script('jquery-slim', get_stylesheet_directory_uri() . '/assets/js/jquery.slim.min.js', array(), '1', true);
             wp_enqueue_script('popper', get_stylesheet_directory_uri() . '/assets/js/popper.min.js', array(), '1', true);
             wp_enqueue_script('aos-js', get_stylesheet_directory_uri() . '/assets/js/aos.js', array(), '1', true);
-            wp_enqueue_script('jquery-3.5', get_stylesheet_directory_uri() . '/assets/js/jquery.min.js', array(), '3.5', true);
+            // wp_enqueue_script('jquery-3.5', get_stylesheet_directory_uri() . '/assets/js/jquery.min.js', array(), '3.5', true);
             wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '6.0.0', true);
             wp_enqueue_script('modal-js', get_stylesheet_directory_uri() . '/assets/js/classes/modal.js', array(), '1.1', true);
-            wp_enqueue_script('flatpickr', get_stylesheet_directory_uri() . '/assets/js/flatpickr.min.js', array('jquery'), '1', true);
-            wp_enqueue_script('products_to_sell', get_stylesheet_directory_uri() . '/assets/js/products_to_sell.js', array('jquery'), '1.1', true);
-            wp_enqueue_script('script', get_stylesheet_directory_uri() . '/assets/js/script.js', array('jquery'), '1.1', true);
+            wp_enqueue_script('flatpickr', get_stylesheet_directory_uri() . '/assets/js/flatpickr.min.js', array('jquery'), '1', true);   
+            wp_enqueue_script('products_to_sell', get_stylesheet_directory_uri() . '/assets/js/products_to_sell.js', array(), '1.1', true);            
+            wp_enqueue_script('script', get_stylesheet_directory_uri() . '/assets/js/script.js', array(), '1.1', true);         
             // do_action('hook_enqueue_scripts');       
         }
 
