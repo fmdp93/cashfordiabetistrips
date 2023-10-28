@@ -77,10 +77,12 @@ $table_prefix = 'wp_';
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define( 'WP_DEBUG', true );
+define( 'WP_DEBUG', false );
 
 // Enable Debug logging to the /wp-content/debug.log file
 define( 'WP_DEBUG_LOG', true );
+
+define( 'FS_METHOD', 'direct' );
 
 // If we're behind a proxy server and using HTTPS, we need to alert WordPress of that fact
 // see also http://codex.wordpress.org/Administration_Over_SSL#Using_a_Reverse_Proxy

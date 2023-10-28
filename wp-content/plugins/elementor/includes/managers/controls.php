@@ -237,6 +237,11 @@ class Controls_Manager {
 	const EXIT_ANIMATION = 'exit_animation';
 
 	/**
+	 * Gaps control.
+	 */
+	const GAPS = 'gaps';
+
+	/**
 	 * Controls.
 	 *
 	 * Holds the list of all the controls. Default is `null`.
@@ -286,6 +291,19 @@ class Controls_Manager {
 	private static $tabs;
 
 	/**
+	 * Has stacks cache been cleared.
+	 *
+	 * Boolean flag used to determine whether the controls manager stack cache has been cleared once during the current runtime.
+	 *
+	 * @since 3.13.0
+	 * @access private
+	 * @static
+	 *
+	 * @var array
+	 */
+	private $has_stacks_cache_been_cleared = false;
+
+	/**
 	 * Init tabs.
 	 *
 	 * Initialize control tabs.
@@ -296,12 +314,12 @@ class Controls_Manager {
 	 */
 	private static function init_tabs() {
 		self::$tabs = [
-			self::TAB_CONTENT => __( 'Content', 'elementor' ),
-			self::TAB_STYLE => __( 'Style', 'elementor' ),
-			self::TAB_ADVANCED => __( 'Advanced', 'elementor' ),
-			self::TAB_RESPONSIVE => __( 'Responsive', 'elementor' ),
-			self::TAB_LAYOUT => __( 'Layout', 'elementor' ),
-			self::TAB_SETTINGS => __( 'Settings', 'elementor' ),
+			self::TAB_CONTENT => esc_html__( 'Content', 'elementor' ),
+			self::TAB_STYLE => esc_html__( 'Style', 'elementor' ),
+			self::TAB_ADVANCED => esc_html__( 'Advanced', 'elementor' ),
+			self::TAB_RESPONSIVE => esc_html__( 'Responsive', 'elementor' ),
+			self::TAB_LAYOUT => esc_html__( 'Layout', 'elementor' ),
+			self::TAB_SETTINGS => esc_html__( 'Settings', 'elementor' ),
 		];
 	}
 
@@ -358,6 +376,10 @@ class Controls_Manager {
 			'box-shadow',
 			'css-filter',
 			'text-shadow',
+			'flex-container',
+			'grid-container',
+			'flex-item',
+			'text-stroke',
 		];
 	}
 
@@ -389,6 +411,7 @@ class Controls_Manager {
 			self::CODE,
 			self::FONT,
 			self::IMAGE_DIMENSIONS,
+			self::GAPS,
 
 			self::WP_WIDGET,
 
@@ -430,7 +453,7 @@ class Controls_Manager {
 			$control_class_id = str_replace( ' ', '_', ucwords( str_replace( '_', ' ', $control_id ) ) );
 			$class_name = __NAMESPACE__ . '\Control_' . $control_class_id;
 
-			$this->register_control( $control_id, new $class_name() );
+			$this->register( new $class_name() );
 		}
 
 		// Group Controls
@@ -447,10 +470,30 @@ class Controls_Manager {
 		 * Fires after Elementor controls are registered.
 		 *
 		 * @since 1.0.0
+		 * @deprecated 3.5.0 Use `elementor/controls/register` hook instead.
 		 *
 		 * @param Controls_Manager $this The controls manager.
 		 */
+		// TODO: Uncomment when Pro uses the new hook.
+		//Plugin::$instance->modules_manager->get_modules( 'dev-tools' )->deprecation->do_deprecated_action(
+		//	'elementor/controls/controls_registered',
+		//	[ $this ],
+		//	'3.5.0',
+		//	'elementor/controls/register'
+		//);
+
 		do_action( 'elementor/controls/controls_registered', $this );
+
+		/**
+		 * After controls registered.
+		 *
+		 * Fires after Elementor controls are registered.
+		 *
+		 * @since 3.5.0
+		 *
+		 * @param Controls_Manager $this The controls manager.
+		 */
+		do_action( 'elementor/controls/register', $this );
 	}
 
 	/**
@@ -461,12 +504,48 @@ class Controls_Manager {
 	 *
 	 * @since 1.0.0
 	 * @access public
+	 * @deprecated 3.5.0 Use `register()` method instead.
 	 *
 	 * @param string       $control_id       Control ID.
 	 * @param Base_Control $control_instance Control instance, usually the
 	 *                                       current instance.
 	 */
 	public function register_control( $control_id, Base_Control $control_instance ) {
+		// TODO: Uncomment when Pro uses the new hook.
+		//Plugin::$instance->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function(
+		//	__METHOD__,
+		//	'3.5.0',
+		//	'register()'
+		//);
+
+		$this->register( $control_instance, $control_id );
+	}
+
+	/**
+	 * Register control.
+	 *
+	 * This method adds a new control to the controls list. It adds any given
+	 * control to any given control instance.
+	 *
+	 * @since 3.5.0
+	 * @access public
+	 *
+	 * @param Base_Control $control_instance Control instance, usually the current instance.
+	 * @param string       $control_id       Control ID. Deprecated parameter.
+	 *
+	 * @return void
+	 */
+	public function register( Base_Control $control_instance, $control_id = null ) {
+
+		// TODO: For BC. Remove in the future.
+		if ( $control_id ) {
+			Plugin::instance()->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_argument(
+				'$control_id', '3.5.0'
+			);
+		} else {
+			$control_id = $control_instance->get_type();
+		}
+
 		$this->controls[ $control_id ] = $control_instance;
 	}
 
@@ -477,12 +556,35 @@ class Controls_Manager {
 	 *
 	 * @since 1.0.0
 	 * @access public
+	 * @deprecated 3.5.0 Use `unregister()` method instead.
 	 *
 	 * @param string $control_id Control ID.
 	 *
 	 * @return bool True if the control was removed, False otherwise.
 	 */
 	public function unregister_control( $control_id ) {
+		Plugin::$instance->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function(
+			__METHOD__,
+			'3.5.0',
+			'unregister()'
+		);
+
+		return $this->unregister( $control_id );
+	}
+
+	/**
+	 * Unregister control.
+	 *
+	 * This method removes control from the controls list.
+	 *
+	 * @since 3.5.0
+	 * @access public
+	 *
+	 * @param string $control_id Control ID.
+	 *
+	 * @return bool Whether the controls has been unregistered.
+	 */
+	public function unregister( $control_id ) {
 		if ( ! isset( $this->controls[ $control_id ] ) ) {
 			return false;
 		}
@@ -644,7 +746,22 @@ class Controls_Manager {
 		$this->stacks[ $stack_id ] = [
 			'tabs' => [],
 			'controls' => [],
+			'responsive_control_duplication_mode' => Plugin::$instance->breakpoints->get_responsive_control_duplication_mode(),
 		];
+	}
+
+	/**
+	 * Remove existing stack from the stacks cache
+	 *
+	 * Removes the stack of a passed instance from the Controls Manager's stacks cache.
+	 *
+	 * @param Controls_Stack $controls_stack
+	 * @return void
+	 */
+	public function delete_stack( Controls_Stack $controls_stack ) {
+		$stack_id = $controls_stack->get_unique_name();
+
+		unset( $this->stacks[ $stack_id ] );
 	}
 
 	/**
@@ -683,7 +800,7 @@ class Controls_Manager {
 		$control_type_instance = $this->get_control( $control_data['type'] );
 
 		if ( ! $control_type_instance ) {
-			_doing_it_wrong( sprintf( '%1$s::%2$s', __CLASS__, __FUNCTION__ ), sprintf( 'Control type "%s" not found.', $control_data['type'] ), '1.0.0' );
+			_doing_it_wrong( sprintf( '%1$s::%2$s', __CLASS__, __FUNCTION__ ), sprintf( 'Control type "%s" not found.', esc_html( $control_data['type'] ) ), '1.0.0' );
 			return false;
 		}
 
@@ -700,7 +817,7 @@ class Controls_Manager {
 		$stack_id = $element->get_unique_name();
 
 		if ( ! $options['overwrite'] && isset( $this->stacks[ $stack_id ]['controls'][ $control_id ] ) ) {
-			_doing_it_wrong( sprintf( '%1$s::%2$s', __CLASS__, __FUNCTION__ ), sprintf( 'Cannot redeclare control with same name "%s".', $control_id ), '1.0.0' );
+			_doing_it_wrong( sprintf( '%1$s::%2$s', __CLASS__, __FUNCTION__ ), sprintf( 'Cannot redeclare control with same name "%s".', esc_html( $control_id ) ), '1.0.0' );
 
 			return false;
 		}
@@ -757,6 +874,27 @@ class Controls_Manager {
 		unset( $this->stacks[ $stack_id ]['controls'][ $control_id ] );
 
 		return true;
+	}
+
+	/**
+	 * Has Stacks Cache Been Cleared.
+	 * @since 3.13.0
+	 * @access public
+	 * @return bool True if the CSS requires to clear the controls stack cache, False otherwise.
+	 */
+	public function has_stacks_cache_been_cleared() {
+		return $this->has_stacks_cache_been_cleared;
+	}
+
+	/**
+	 * Clear stack.
+	 * This method clears the stack.
+	 * @since 3.13.0
+	 * @access public
+	 */
+	public function clear_stack_cache() {
+		$this->stacks = [];
+		$this->has_stacks_cache_been_cleared = true;
 	}
 
 	/**
@@ -856,12 +994,17 @@ class Controls_Manager {
 	 *
 	 * @param Controls_Stack $controls_stack  Controls stack.
 	 *
-	 * @return null|array Stack data if it exist, `null` otherwise.
+	 * @return null|array Stack data if it exists, `null` otherwise.
 	 */
 	public function get_element_stack( Controls_Stack $controls_stack ) {
 		$stack_id = $controls_stack->get_unique_name();
 
 		if ( ! isset( $this->stacks[ $stack_id ] ) ) {
+			return null;
+		}
+
+		if ( $this->should_clean_stack( $this->stacks[ $stack_id ] ) ) {
+			$this->delete_stack( $controls_stack );
 			return null;
 		}
 
@@ -887,13 +1030,13 @@ class Controls_Manager {
 		$controls_stack->start_controls_section(
 			'section_custom_css_pro',
 			[
-				'label' => __( 'Custom CSS', 'elementor' ),
+				'label' => esc_html__( 'Custom CSS', 'elementor' ),
 				'tab' => $tab,
 			]
 		);
 
 		$messages = [
-			__( 'Custom CSS lets you add CSS code to any widget, and see it render live right in the editor.', 'elementor' ),
+			esc_html__( 'Custom CSS lets you add CSS code to any widget, and see it render live right in the editor.', 'elementor' ),
 		];
 
 		if ( $additional_messages ) {
@@ -905,9 +1048,54 @@ class Controls_Manager {
 			[
 				'type' => self::RAW_HTML,
 				'raw' => $this->get_teaser_template( [
-					'title' => __( 'Meet Our Custom CSS', 'elementor' ),
+					'title' => esc_html__( 'Meet Our Custom CSS', 'elementor' ),
 					'messages' => $messages,
-					'link' => 'https://elementor.com/pro/?utm_source=panel-custom-css&utm_campaign=gopro&utm_medium=wp-dash',
+					'link' => 'https://go.elementor.com/go-pro-custom-css/',
+				] ),
+			]
+		);
+
+		$controls_stack->end_controls_section();
+	}
+
+	/**
+	 * Add Page Transitions controls.
+	 *
+	 * This method adds a new control for the "Page Transitions" feature. The Core
+	 * version of elementor uses this method to display an upgrade message to
+	 * Elementor Pro.
+	 *
+	 * @param Controls_Stack $controls_stack .
+	 * @param string $tab
+	 * @param array $additional_messages
+	 *
+	 * @return void
+	 */
+	public function add_page_transitions_controls( Controls_Stack $controls_stack, $tab = self::TAB_ADVANCED, $additional_messages = [] ) {
+		$controls_stack->start_controls_section(
+			'section_page_transitions_teaser',
+			[
+				'label' => esc_html__( 'Page Transitions', 'elementor' ),
+				'tab' => $tab,
+			]
+		);
+
+		$messages = [
+			esc_html__( 'Page Transitions let you style entrance and exit animations between pages as well as display loader until your page assets load.', 'elementor' ),
+		];
+
+		if ( $additional_messages ) {
+			$messages = array_merge( $messages, $additional_messages );
+		}
+
+		$controls_stack->add_control(
+			'page_transitions_teaser',
+			[
+				'type' => self::RAW_HTML,
+				'raw' => $this->get_teaser_template( [
+					'title' => esc_html__( 'Meet Page Transitions', 'elementor' ),
+					'messages' => $messages,
+					'link' => 'https://go.elementor.com/go-pro-page-transitions/',
 				] ),
 			]
 		);
@@ -919,21 +1107,40 @@ class Controls_Manager {
 		ob_start();
 		?>
 		<div class="elementor-nerd-box">
-			<img class="elementor-nerd-box-icon" src="<?php echo ELEMENTOR_ASSETS_URL . 'images/go-pro.svg'; ?>" />
-			<div class="elementor-nerd-box-title"><?php echo $texts['title']; ?></div>
+			<img class="elementor-nerd-box-icon" src="<?php echo esc_url( ELEMENTOR_ASSETS_URL . 'images/go-pro.svg' ); ?>" loading="lazy" />
+			<div class="elementor-nerd-box-title"><?php Utils::print_unescaped_internal_string( $texts['title'] ); ?></div>
 			<?php foreach ( $texts['messages'] as $message ) { ?>
-				<div class="elementor-nerd-box-message"><?php echo $message; ?></div>
+				<div class="elementor-nerd-box-message"><?php Utils::print_unescaped_internal_string( $message ); ?></div>
 			<?php }
 
-			if ( $texts['link'] ) { ?>
-				<a class="elementor-nerd-box-link elementor-button elementor-button-default elementor-button-go-pro" href="<?php echo Utils::get_pro_link( $texts['link'] ); ?>" target="_blank">
-					<?php echo __( 'Go Pro', 'elementor' ); ?>
+			// Show the upgrade button only if the user doesn't have Pro.
+			if ( $texts['link'] && ! Utils::has_pro() ) { ?>
+				<a class="elementor-button go-pro" href="<?php echo esc_url( ( $texts['link'] ) ); ?>" target="_blank">
+					<?php echo esc_html__( 'Upgrade Now', 'elementor' ); ?>
 				</a>
 			<?php } ?>
 		</div>
 		<?php
 
 		return ob_get_clean();
+	}
+
+	/**
+	 * Get Responsive Control Device Suffix
+	 *
+	 * @param array $control
+	 * @return string $device suffix
+	 */
+	public static function get_responsive_control_device_suffix( array $control ): string {
+		if ( ! empty( $control['responsive']['max'] ) ) {
+			$query_device = $control['responsive']['max'];
+		} elseif ( ! empty( $control['responsive']['min'] ) ) {
+			$query_device = $control['responsive']['min'];
+		} else {
+			return '';
+		}
+
+		return 'desktop' === $query_device ? '' : '_' . $query_device;
 	}
 
 	/**
@@ -952,7 +1159,7 @@ class Controls_Manager {
 		$controls_stack->start_controls_section(
 			'section_custom_attributes_pro',
 			[
-				'label' => __( 'Attributes', 'elementor' ),
+				'label' => esc_html__( 'Attributes', 'elementor' ),
 				'tab' => self::TAB_ADVANCED,
 			]
 		);
@@ -962,15 +1169,49 @@ class Controls_Manager {
 			[
 				'type' => self::RAW_HTML,
 				'raw' => $this->get_teaser_template( [
-					'title' => __( 'Meet Our Attributes', 'elementor' ),
+					'title' => esc_html__( 'Meet Our Attributes', 'elementor' ),
 					'messages' => [
-						__( 'Attributes lets you add custom HTML attributes to any element.', 'elementor' ),
+						esc_html__( 'Attributes lets you add custom HTML attributes to any element.', 'elementor' ),
 					],
-					'link' => 'https://elementor.com/pro/?utm_source=panel-custom-attributes&utm_campaign=gopro&utm_medium=wp-dash',
+					'link' => 'https://go.elementor.com/go-pro-custom-attributes/',
 				] ),
 			]
 		);
 
 		$controls_stack->end_controls_section();
+	}
+
+	/**
+	 * Check if a stack should be cleaned by the current responsive control duplication mode.
+	 *
+	 * @param $stack
+	 * @return bool
+	 */
+	private function should_clean_stack( $stack ): bool {
+		if ( ! isset( $stack['responsive_control_duplication_mode'] ) ) {
+			return false;
+		}
+
+		$stack_duplication_mode = $stack['responsive_control_duplication_mode'];
+
+		// This array provides a convenient way to map human-readable mode names to numeric values for comparison.
+		// If the current stack's mode is greater than or equal to the current mode, then we shouldn't clean the stack.
+		$modes = [
+			'off' => 1,
+			'dynamic' => 2,
+			'on' => 3,
+		];
+
+		if ( ! isset( $modes[ $stack_duplication_mode ] ) ) {
+			return false;
+		}
+
+		$current_duplication_mode = Plugin::$instance->breakpoints->get_responsive_control_duplication_mode();
+
+		if ( $modes[ $stack_duplication_mode ] >= $modes[ $current_duplication_mode ] ) {
+			return false;
+		}
+
+		return true;
 	}
 }
