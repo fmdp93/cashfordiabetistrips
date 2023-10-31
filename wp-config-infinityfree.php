@@ -20,16 +20,16 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'epiz_25833521_cashfordiabetistrips');
+define( 'DB_NAME', 'if0_35298649_matrixsystem');
 
 /** MySQL database username */
-define( 'DB_USER', 'epiz_25833521');
+define( 'DB_USER', 'if0_35298649');
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'Oz9IXkHCpQd');
+define( 'DB_PASSWORD', 'REnRz2NDG2b');
 
 /** MySQL hostname */
-define( 'DB_HOST', 'sql105.epizy.com');
+define( 'DB_HOST', 'sql306.infinityfree.com');
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8');
@@ -77,7 +77,7 @@ $table_prefix = 'wp_';
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define( 'WP_DEBUG', true );
+define( 'WP_DEBUG', false );
 
 // If we're behind a proxy server and using HTTPS, we need to alert WordPress of that fact
 // see also http://codex.wordpress.org/Administration_Over_SSL#Using_a_Reverse_Proxy
