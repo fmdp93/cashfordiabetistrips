@@ -24,7 +24,7 @@ class Revisions_Manager {
 	/**
 	 * Maximum number of revisions to display.
 	 */
-	const MAX_REVISIONS_TO_DISPLAY = 50;
+	const MAX_REVISIONS_TO_DISPLAY = 100;
 
 	/**
 	 * Authors list.
@@ -71,9 +71,7 @@ class Revisions_Manager {
 	public static function avoid_delete_auto_save( $post_content, $post_id ) {
 		// Add a temporary string in order the $post will not be equal to the $autosave
 		// in edit-form-advanced.php:210
-		$document = Plugin::$instance->documents->get( $post_id );
-
-		if ( $document && $document->is_built_with_elementor() ) {
+		if ( $post_id && Plugin::$instance->db->is_built_with_elementor( $post_id ) ) {
 			$post_content .= '<!-- Created with Elementor -->';
 		}
 
@@ -88,13 +86,9 @@ class Revisions_Manager {
 	public static function remove_temp_post_content() {
 		global $post;
 
-		$document = Plugin::$instance->documents->get( $post->ID );
-
-		if ( ! $document || ! $document->is_built_with_elementor() ) {
-			return;
+		if ( Plugin::$instance->db->is_built_with_elementor( $post->ID ) ) {
+			$post->post_content = str_replace( '<!-- Created with Elementor -->', '', $post->post_content );
 		}
-
-		$post->post_content = str_replace( '<!-- Created with Elementor -->', '', $post->post_content );
 	}
 
 	/**
@@ -154,13 +148,13 @@ class Revisions_Manager {
 
 			if ( $revision->ID === $post->ID ) {
 				$type = 'current';
-				$type_label = esc_html__( 'Current Version', 'elementor' );
+				$type_label = __( 'Current Version', 'elementor' );
 			} elseif ( false !== strpos( $revision->post_name, 'autosave' ) ) {
 				$type = 'autosave';
-				$type_label = esc_html__( 'Autosave', 'elementor' );
+				$type_label = __( 'Autosave', 'elementor' );
 			} else {
 				$type = 'revision';
-				$type_label = esc_html__( 'Revision', 'elementor' );
+				$type_label = __( 'Revision', 'elementor' );
 			}
 
 			if ( ! isset( self::$authors[ $revision->post_author ] ) ) {
@@ -175,7 +169,7 @@ class Revisions_Manager {
 				'author' => self::$authors[ $revision->post_author ]['display_name'],
 				'timestamp' => strtotime( $revision->post_modified ),
 				'date' => sprintf(
-					/* translators: 1: Human readable time difference, 2: Date. */
+					/* translators: 1: Human readable time difference, 2: Date */
 					__( '%1$s ago (%2$s)', 'elementor' ),
 					$human_time,
 					$date
@@ -254,12 +248,22 @@ class Revisions_Manager {
 			throw new \Exception( 'You must set the revision ID.' );
 		}
 
-		$revision = Plugin::$instance->documents->get_with_permissions( $data['id'] );
+		$revision = Plugin::$instance->documents->get( $data['id'] );
 
-		return [
+		if ( ! $revision ) {
+			throw new \Exception( 'Invalid revision.' );
+		}
+
+		if ( ! current_user_can( 'edit_post', $revision->get_id() ) ) {
+			throw new \Exception( __( 'Access denied.', 'elementor' ) );
+		}
+
+		$revision_data = [
 			'settings' => $revision->get_settings(),
 			'elements' => $revision->get_elements_data(),
 		];
+
+		return $revision_data;
 	}
 
 	/**
@@ -346,9 +350,9 @@ class Revisions_Manager {
 	 * Fired by `elementor/editor/editor_settings` filter.
 	 *
 	 * @since 1.7.0
-	 * @deprecated 3.1.0
 	 * @access public
 	 * @static
+	 * @deprecated 3.1.0
 	 */
 	public static function editor_settings() {
 		Plugin::$instance->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function( __METHOD__, '3.1.0' );
@@ -356,12 +360,7 @@ class Revisions_Manager {
 		return [];
 	}
 
-	/**
-	 * @throws \Exception
-	 */
-	public static function ajax_get_revisions( $data ) {
-		Plugin::$instance->documents->check_permissions( $data['editor_post_id'] );
-
+	public static function ajax_get_revisions() {
 		return self::get_revisions();
 	}
 

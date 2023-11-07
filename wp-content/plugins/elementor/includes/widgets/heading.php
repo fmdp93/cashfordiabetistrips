@@ -42,7 +42,7 @@ class Widget_Heading extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Heading', 'elementor' );
+		return __( 'Heading', 'elementor' );
 	}
 
 	/**
@@ -101,30 +101,27 @@ class Widget_Heading extends Widget_Base {
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => esc_html__( 'Title', 'elementor' ),
+				'label' => __( 'Title', 'elementor' ),
 			]
 		);
 
 		$this->add_control(
 			'title',
 			[
-				'label' => esc_html__( 'Title', 'elementor' ),
+				'label' => __( 'Title', 'elementor' ),
 				'type' => Controls_Manager::TEXTAREA,
-				'ai' => [
-					'type' => 'text',
-				],
 				'dynamic' => [
 					'active' => true,
 				],
-				'placeholder' => esc_html__( 'Enter your title', 'elementor' ),
-				'default' => esc_html__( 'Add Your Heading Text Here', 'elementor' ),
+				'placeholder' => __( 'Enter your title', 'elementor' ),
+				'default' => __( 'Add Your Heading Text Here', 'elementor' ),
 			]
 		);
 
 		$this->add_control(
 			'link',
 			[
-				'label' => esc_html__( 'Link', 'elementor' ),
+				'label' => __( 'Link', 'elementor' ),
 				'type' => Controls_Manager::URL,
 				'dynamic' => [
 					'active' => true,
@@ -139,16 +136,16 @@ class Widget_Heading extends Widget_Base {
 		$this->add_control(
 			'size',
 			[
-				'label' => esc_html__( 'Size', 'elementor' ),
+				'label' => __( 'Size', 'elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'default',
 				'options' => [
-					'default' => esc_html__( 'Default', 'elementor' ),
-					'small' => esc_html__( 'Small', 'elementor' ),
-					'medium' => esc_html__( 'Medium', 'elementor' ),
-					'large' => esc_html__( 'Large', 'elementor' ),
-					'xl' => esc_html__( 'XL', 'elementor' ),
-					'xxl' => esc_html__( 'XXL', 'elementor' ),
+					'default' => __( 'Default', 'elementor' ),
+					'small' => __( 'Small', 'elementor' ),
+					'medium' => __( 'Medium', 'elementor' ),
+					'large' => __( 'Large', 'elementor' ),
+					'xl' => __( 'XL', 'elementor' ),
+					'xxl' => __( 'XXL', 'elementor' ),
 				],
 			]
 		);
@@ -156,7 +153,7 @@ class Widget_Heading extends Widget_Base {
 		$this->add_control(
 			'header_size',
 			[
-				'label' => esc_html__( 'HTML Tag', 'elementor' ),
+				'label' => __( 'HTML Tag', 'elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'h1' => 'H1',
@@ -176,23 +173,23 @@ class Widget_Heading extends Widget_Base {
 		$this->add_responsive_control(
 			'align',
 			[
-				'label' => esc_html__( 'Alignment', 'elementor' ),
+				'label' => __( 'Alignment', 'elementor' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Left', 'elementor' ),
+						'title' => __( 'Left', 'elementor' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => esc_html__( 'Center', 'elementor' ),
+						'title' => __( 'Center', 'elementor' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => esc_html__( 'Right', 'elementor' ),
+						'title' => __( 'Right', 'elementor' ),
 						'icon' => 'eicon-text-align-right',
 					],
 					'justify' => [
-						'title' => esc_html__( 'Justified', 'elementor' ),
+						'title' => __( 'Justified', 'elementor' ),
 						'icon' => 'eicon-text-align-justify',
 					],
 				],
@@ -206,7 +203,7 @@ class Widget_Heading extends Widget_Base {
 		$this->add_control(
 			'view',
 			[
-				'label' => esc_html__( 'View', 'elementor' ),
+				'label' => __( 'View', 'elementor' ),
 				'type' => Controls_Manager::HIDDEN,
 				'default' => 'traditional',
 			]
@@ -217,7 +214,7 @@ class Widget_Heading extends Widget_Base {
 		$this->start_controls_section(
 			'section_title_style',
 			[
-				'label' => esc_html__( 'Title', 'elementor' ),
+				'label' => __( 'Title', 'elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -225,7 +222,7 @@ class Widget_Heading extends Widget_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => esc_html__( 'Text Color', 'elementor' ),
+				'label' => __( 'Text Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -248,14 +245,6 @@ class Widget_Heading extends Widget_Base {
 		);
 
 		$this->add_group_control(
-			Group_Control_Text_Stroke::get_type(),
-			[
-				'name' => 'text_stroke',
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
-			]
-		);
-
-		$this->add_group_control(
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'text_shadow',
@@ -266,22 +255,22 @@ class Widget_Heading extends Widget_Base {
 		$this->add_control(
 			'blend_mode',
 			[
-				'label' => esc_html__( 'Blend Mode', 'elementor' ),
+				'label' => __( 'Blend Mode', 'elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'' => esc_html__( 'Normal', 'elementor' ),
-					'multiply' => esc_html__( 'Multiply', 'elementor' ),
-					'screen' => esc_html__( 'Screen', 'elementor' ),
-					'overlay' => esc_html__( 'Overlay', 'elementor' ),
-					'darken' => esc_html__( 'Darken', 'elementor' ),
-					'lighten' => esc_html__( 'Lighten', 'elementor' ),
-					'color-dodge' => esc_html__( 'Color Dodge', 'elementor' ),
-					'saturation' => esc_html__( 'Saturation', 'elementor' ),
-					'color' => esc_html__( 'Color', 'elementor' ),
-					'difference' => esc_html__( 'Difference', 'elementor' ),
-					'exclusion' => esc_html__( 'Exclusion', 'elementor' ),
-					'hue' => esc_html__( 'Hue', 'elementor' ),
-					'luminosity' => esc_html__( 'Luminosity', 'elementor' ),
+					'' => __( 'Normal', 'elementor' ),
+					'multiply' => 'Multiply',
+					'screen' => 'Screen',
+					'overlay' => 'Overlay',
+					'darken' => 'Darken',
+					'lighten' => 'Lighten',
+					'color-dodge' => 'Color Dodge',
+					'saturation' => 'Saturation',
+					'color' => 'Color',
+					'difference' => 'Difference',
+					'exclusion' => 'Exclusion',
+					'hue' => 'Hue',
+					'luminosity' => 'Luminosity',
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-heading-title' => 'mix-blend-mode: {{VALUE}}',
@@ -326,8 +315,7 @@ class Widget_Heading extends Widget_Base {
 
 		$title_html = sprintf( '<%1$s %2$s>%3$s</%1$s>', Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'title' ), $title );
 
-		// PHPCS - the variable $title_html holds safe data.
-		echo $title_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $title_html;
 	}
 
 	/**

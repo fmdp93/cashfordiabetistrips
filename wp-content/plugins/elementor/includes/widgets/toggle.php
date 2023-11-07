@@ -43,7 +43,7 @@ class Widget_Toggle extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Toggle', 'elementor' );
+		return __( 'Toggle', 'elementor' );
 	}
 
 	/**
@@ -75,18 +75,6 @@ class Widget_Toggle extends Widget_Base {
 	}
 
 	/**
-	 * Hide widget from panel.
-	 *
-	 * Hide the toggle widget from the panel if nested-accordion experiment is active.
-	 *
-	 * @since 3.15.0
-	 * @return bool
-	 */
-	public function show_in_panel(): bool {
-		return ! Plugin::$instance->experiments->is_feature_active( 'nested-elements' );
-	}
-
-	/**
 	 * Register toggle widget controls.
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
@@ -98,7 +86,7 @@ class Widget_Toggle extends Widget_Base {
 		$this->start_controls_section(
 			'section_toggle',
 			[
-				'label' => esc_html__( 'Toggle', 'elementor' ),
+				'label' => __( 'Toggle', 'elementor' ),
 			]
 		);
 
@@ -107,9 +95,9 @@ class Widget_Toggle extends Widget_Base {
 		$repeater->add_control(
 			'tab_title',
 			[
-				'label' => esc_html__( 'Title', 'elementor' ),
+				'label' => __( 'Title & Description', 'elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => esc_html__( 'Toggle Title', 'elementor' ),
+				'default' => __( 'Toggle Title', 'elementor' ),
 				'label_block' => true,
 				'dynamic' => [
 					'active' => true,
@@ -120,40 +108,30 @@ class Widget_Toggle extends Widget_Base {
 		$repeater->add_control(
 			'tab_content',
 			[
-				'label' => esc_html__( 'Content', 'elementor' ),
+				'label' => __( 'Content', 'elementor' ),
 				'type' => Controls_Manager::WYSIWYG,
-				'default' => esc_html__( 'Toggle Content', 'elementor' ),
+				'default' => __( 'Toggle Content', 'elementor' ),
+				'show_label' => false,
 				'dynamic' => [
 					'active' => true,
 				],
 			]
 		);
 
-		if ( Plugin::$instance->widgets_manager->get_widget_types( 'nested-accordion' ) ) {
-			$this->add_deprecation_message(
-				'3.15.0',
-				esc_html__(
-					'You are currently editing a Toggle widget in its old version. Drag a new Accordion widget onto your page to use a newer version, providing nested capabilities.',
-					'elementor'
-				),
-				'nested-accordion'
-			);
-		}
-
 		$this->add_control(
 			'tabs',
 			[
-				'label' => esc_html__( 'Toggle Items', 'elementor' ),
+				'label' => __( 'Toggle Items', 'elementor' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'tab_title' => esc_html__( 'Toggle #1', 'elementor' ),
-						'tab_content' => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
+						'tab_title' => __( 'Toggle #1', 'elementor' ),
+						'tab_content' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
 					],
 					[
-						'tab_title' => esc_html__( 'Toggle #2', 'elementor' ),
-						'tab_content' => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
+						'tab_title' => __( 'Toggle #2', 'elementor' ),
+						'tab_content' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
 					],
 				],
 				'title_field' => '{{{ tab_title }}}',
@@ -163,7 +141,7 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'view',
 			[
-				'label' => esc_html__( 'View', 'elementor' ),
+				'label' => __( 'View', 'elementor' ),
 				'type' => Controls_Manager::HIDDEN,
 				'default' => 'traditional',
 			]
@@ -172,7 +150,7 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'selected_icon',
 			[
-				'label' => esc_html__( 'Icon', 'elementor' ),
+				'label' => __( 'Icon', 'elementor' ),
 				'type' => Controls_Manager::ICONS,
 				'separator' => 'before',
 				'fa4compatibility' => 'icon',
@@ -200,7 +178,7 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'selected_active_icon',
 			[
-				'label' => esc_html__( 'Active Icon', 'elementor' ),
+				'label' => __( 'Active Icon', 'elementor' ),
 				'type' => Controls_Manager::ICONS,
 				'fa4compatibility' => 'icon_active',
 				'default' => [
@@ -230,7 +208,7 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'title_html_tag',
 			[
-				'label' => esc_html__( 'Title HTML Tag', 'elementor' ),
+				'label' => __( 'Title HTML Tag', 'elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'h1' => 'H1',
@@ -246,21 +224,12 @@ class Widget_Toggle extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'faq_schema',
-			[
-				'label' => esc_html__( 'FAQ Schema', 'elementor' ),
-				'type' => Controls_Manager::SWITCHER,
-				'separator' => 'before',
-			]
-		);
-
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_toggle_style',
 			[
-				'label' => esc_html__( 'Toggle', 'elementor' ),
+				'label' => __( 'Toggle', 'elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -268,20 +237,17 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'border_width',
 			[
-				'label' => esc_html__( 'Border Width', 'elementor' ),
+				'label' => __( 'Border Width', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'vw', 'custom' ],
 				'range' => [
 					'px' => [
-						'max' => 20,
-					],
-					'em' => [
-						'max' => 2,
+						'min' => 0,
+						'max' => 10,
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-title' => 'border-width: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .elementor-tab-content' => 'border-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title' => 'border-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-content' => 'border-width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -289,11 +255,11 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'border_color',
 			[
-				'label' => esc_html__( 'Border Color', 'elementor' ),
+				'label' => __( 'Border Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-content' => 'border-bottom-color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-tab-title' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-content' => 'border-bottom-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -301,7 +267,7 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_responsive_control(
 			'space_between',
 			[
-				'label' => esc_html__( 'Space Between', 'elementor' ),
+				'label' => __( 'Space Between', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -310,7 +276,7 @@ class Widget_Toggle extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-toggle-item:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .elementor-toggle .elementor-toggle-item:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}}',
 				],
 			]
 		);
@@ -319,7 +285,7 @@ class Widget_Toggle extends Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'box_shadow',
-				'selector' => '{{WRAPPER}} .elementor-toggle-item',
+				'selector' => '{{WRAPPER}} .elementor-toggle .elementor-toggle-item',
 			]
 		);
 
@@ -328,7 +294,7 @@ class Widget_Toggle extends Widget_Base {
 		$this->start_controls_section(
 			'section_toggle_style_title',
 			[
-				'label' => esc_html__( 'Title', 'elementor' ),
+				'label' => __( 'Title', 'elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -336,10 +302,10 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'title_background',
 			[
-				'label' => esc_html__( 'Background', 'elementor' ),
+				'label' => __( 'Background', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-title' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -348,11 +314,10 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => esc_html__( 'Color', 'elementor' ),
+				'label' => __( 'Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-toggle-title, {{WRAPPER}} .elementor-toggle-icon' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-toggle-icon svg' => 'fill: {{VALUE}};',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -363,7 +328,7 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'tab_active_color',
 			[
-				'label' => esc_html__( 'Active Color', 'elementor' ),
+				'label' => __( 'Active Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-tab-title.elementor-active a, {{WRAPPER}} .elementor-tab-title.elementor-active .elementor-toggle-icon' => 'color: {{VALUE}};',
@@ -378,29 +343,21 @@ class Widget_Toggle extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography',
-				'selector' => '{{WRAPPER}} .elementor-toggle-title',
+				'selector' => '{{WRAPPER}} .elementor-toggle .elementor-toggle-title',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				],
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Text_Shadow::get_type(),
-			[
-				'name' => 'title_shadow',
-				'selector' => '{{WRAPPER}} .elementor-toggle-title',
-			]
-		);
-
 		$this->add_responsive_control(
 			'title_padding',
 			[
-				'label' => esc_html__( 'Padding', 'elementor' ),
+				'label' => __( 'Padding', 'elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'vw', 'custom' ],
+				'size_units' => [ 'px', 'em', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -410,7 +367,7 @@ class Widget_Toggle extends Widget_Base {
 		$this->start_controls_section(
 			'section_toggle_style_icon',
 			[
-				'label' => esc_html__( 'Icon', 'elementor' ),
+				'label' => __( 'Icon', 'elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'selected_icon[value]!' => '',
@@ -421,15 +378,15 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'icon_align',
 			[
-				'label' => esc_html__( 'Alignment', 'elementor' ),
+				'label' => __( 'Alignment', 'elementor' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Start', 'elementor' ),
+						'title' => __( 'Start', 'elementor' ),
 						'icon' => 'eicon-h-align-left',
 					],
 					'right' => [
-						'title' => esc_html__( 'End', 'elementor' ),
+						'title' => __( 'End', 'elementor' ),
 						'icon' => 'eicon-h-align-right',
 					],
 				],
@@ -441,11 +398,11 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'icon_color',
 			[
-				'label' => esc_html__( 'Color', 'elementor' ),
+				'label' => __( 'Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-title .elementor-toggle-icon i:before' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-tab-title .elementor-toggle-icon svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title .elementor-toggle-icon i:before' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title .elementor-toggle-icon svg' => 'fill: {{VALUE}};',
 				],
 			]
 		);
@@ -453,11 +410,11 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'icon_active_color',
 			[
-				'label' => esc_html__( 'Active Color', 'elementor' ),
+				'label' => __( 'Active Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-title.elementor-active .elementor-toggle-icon i:before' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-tab-title.elementor-active .elementor-toggle-icon svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title.elementor-active .elementor-toggle-icon i:before' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title.elementor-active .elementor-toggle-icon svg' => 'fill: {{VALUE}};',
 				],
 			]
 		);
@@ -465,7 +422,7 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_responsive_control(
 			'icon_space',
 			[
-				'label' => esc_html__( 'Spacing', 'elementor' ),
+				'label' => __( 'Spacing', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -474,8 +431,8 @@ class Widget_Toggle extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-toggle-icon.elementor-toggle-icon-left' => 'margin-right: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .elementor-toggle-icon.elementor-toggle-icon-right' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-toggle-icon.elementor-toggle-icon-left' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-toggle-icon.elementor-toggle-icon-right' => 'margin-left: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -485,7 +442,7 @@ class Widget_Toggle extends Widget_Base {
 		$this->start_controls_section(
 			'section_toggle_style_content',
 			[
-				'label' => esc_html__( 'Content', 'elementor' ),
+				'label' => __( 'Content', 'elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -493,10 +450,10 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'content_background_color',
 			[
-				'label' => esc_html__( 'Background', 'elementor' ),
+				'label' => __( 'Background', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-content' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-content' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -504,10 +461,10 @@ class Widget_Toggle extends Widget_Base {
 		$this->add_control(
 			'content_color',
 			[
-				'label' => esc_html__( 'Color', 'elementor' ),
+				'label' => __( 'Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-content' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-content' => 'color: {{VALUE}};',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_TEXT,
@@ -519,29 +476,21 @@ class Widget_Toggle extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'content_typography',
-				'selector' => '{{WRAPPER}} .elementor-tab-content',
+				'selector' => '{{WRAPPER}} .elementor-toggle .elementor-tab-content',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				],
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Text_Shadow::get_type(),
-			[
-				'name' => 'content_shadow',
-				'selector' => '{{WRAPPER}} .elementor-tab-content',
-			]
-		);
-
 		$this->add_responsive_control(
 			'content_padding',
 			[
-				'label' => esc_html__( 'Padding', 'elementor' ),
+				'label' => __( 'Padding', 'elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'vw', 'custom' ],
+				'size_units' => [ 'px', 'em', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -576,7 +525,7 @@ class Widget_Toggle extends Widget_Base {
 		$has_icon = ( ! $is_new || ! empty( $settings['selected_icon']['value'] ) );
 
 		?>
-		<div class="elementor-toggle">
+		<div class="elementor-toggle" role="tablist">
 			<?php
 			foreach ( $settings['tabs'] as $index => $item ) :
 				$tab_count = $index + 1;
@@ -589,7 +538,7 @@ class Widget_Toggle extends Widget_Base {
 					'id' => 'elementor-tab-title-' . $id_int . $tab_count,
 					'class' => [ 'elementor-tab-title' ],
 					'data-tab' => $tab_count,
-					'role' => 'button',
+					'role' => 'tab',
 					'aria-controls' => 'elementor-tab-content-' . $id_int . $tab_count,
 					'aria-expanded' => 'false',
 				] );
@@ -598,14 +547,14 @@ class Widget_Toggle extends Widget_Base {
 					'id' => 'elementor-tab-content-' . $id_int . $tab_count,
 					'class' => [ 'elementor-tab-content', 'elementor-clearfix' ],
 					'data-tab' => $tab_count,
-					'role' => 'region',
+					'role' => 'tabpanel',
 					'aria-labelledby' => 'elementor-tab-title-' . $id_int . $tab_count,
 				] );
 
 				$this->add_inline_editing_attributes( $tab_content_setting_key, 'advanced' );
 				?>
 				<div class="elementor-toggle-item">
-					<<?php Utils::print_validated_html_tag( $settings['title_html_tag'] ); ?> <?php $this->print_render_attribute_string( $tab_title_setting_key ); ?>>
+					<<?php echo Utils::validate_html_tag( $settings['title_html_tag'] ); ?> <?php echo $this->get_render_attribute_string( $tab_title_setting_key ); ?>>
 						<?php if ( $has_icon ) : ?>
 						<span class="elementor-toggle-icon elementor-toggle-icon-<?php echo esc_attr( $settings['icon_align'] ); ?>" aria-hidden="true">
 							<?php
@@ -618,33 +567,11 @@ class Widget_Toggle extends Widget_Base {
 							<?php } ?>
 						</span>
 						<?php endif; ?>
-						<a class="elementor-toggle-title" tabindex="0"><?php $this->print_unescaped_setting( 'tab_title', 'tabs', $index ); ?></a>
-					</<?php Utils::print_validated_html_tag( $settings['title_html_tag'] ); ?>>
-
-					<div <?php $this->print_render_attribute_string( $tab_content_setting_key ); ?>><?php Utils::print_unescaped_internal_string( $this->parse_text_editor( $item['tab_content'] ) ); ?></div>
+						<a href="" class="elementor-toggle-title"><?php echo $item['tab_title']; ?></a>
+					</<?php echo Utils::validate_html_tag( $settings['title_html_tag'] ); ?>>
+					<div <?php echo $this->get_render_attribute_string( $tab_content_setting_key ); ?>><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
 				</div>
 			<?php endforeach; ?>
-			<?php
-			if ( isset( $settings['faq_schema'] ) && 'yes' === $settings['faq_schema'] ) {
-				$json = [
-					'@context' => 'https://schema.org',
-					'@type' => 'FAQPage',
-					'mainEntity' => [],
-				];
-
-				foreach ( $settings['tabs'] as $index => $item ) {
-					$json['mainEntity'][] = [
-						'@type' => 'Question',
-						'name' => wp_strip_all_tags( $item['tab_title'] ),
-						'acceptedAnswer' => [
-							'@type' => 'Answer',
-							'text' => $this->parse_text_editor( $item['tab_content'] ),
-						],
-					];
-				}
-				?>
-				<script type="application/ld+json"><?php echo wp_json_encode( $json ); ?></script>
-			<?php } ?>
 		</div>
 		<?php
 	}
@@ -659,7 +586,7 @@ class Widget_Toggle extends Widget_Base {
 	 */
 	protected function content_template() {
 		?>
-		<div class="elementor-toggle">
+		<div class="elementor-toggle" role="tablist">
 			<#
 			if ( settings.tabs ) {
 				var tabindex = view.getIDInt().toString().substr( 0, 3 ),
@@ -677,7 +604,7 @@ class Widget_Toggle extends Widget_Base {
 						'id': 'elementor-tab-title-' + tabindex + tabCount,
 						'class': [ 'elementor-tab-title' ],
 						'data-tab': tabCount,
-						'role': 'button',
+						'role': 'tab',
 						'aria-controls': 'elementor-tab-content-' + tabindex + tabCount,
 						'aria-expanded': 'false',
 					} );
@@ -686,7 +613,7 @@ class Widget_Toggle extends Widget_Base {
 						'id': 'elementor-tab-content-' + tabindex + tabCount,
 						'class': [ 'elementor-tab-content', 'elementor-clearfix' ],
 						'data-tab': tabCount,
-						'role': 'region',
+						'role': 'tabpanel',
 						'aria-labelledby': 'elementor-tab-title-' + tabindex + tabCount
 					} );
 
@@ -705,7 +632,7 @@ class Widget_Toggle extends Widget_Base {
 								<# } #>
 							</span>
 							<# } #>
-							<a class="elementor-toggle-title" tabindex="0">{{{ item.tab_title }}}</a>
+							<a href="" class="elementor-toggle-title">{{{ item.tab_title }}}</a>
 						</{{{ titleHTMLTag }}}>
 						<div {{{ view.getRenderAttributeString( tabContentKey ) }}}>{{{ item.tab_content }}}</div>
 					</div>

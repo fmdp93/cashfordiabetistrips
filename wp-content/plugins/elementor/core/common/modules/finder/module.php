@@ -85,10 +85,6 @@ class Module extends BaseModule {
 	 * @return array
 	 */
 	public function ajax_get_category_items( array $data ) {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			throw new \Exception( 'Access denied.' );
-		}
-
 		$category = $this->categories_manager->get_categories( $data['category'] );
 
 		return $category->get_category_items( $data );
@@ -111,16 +107,6 @@ class Module extends BaseModule {
 			$categories_data[ $category_name ] = array_merge( $category->get_settings(), [ 'name' => $category_name ] );
 		}
 
-		/**
-		 * Finder categories.
-		 *
-		 * Filters the list of finder categories. This hook is used to manage Finder
-		 * categories - to add new categories, remove and edit existing categories.
-		 *
-		 * @since 2.3.0
-		 *
-		 * @param array $categories_data A list of finder categories.
-		 */
 		$categories_data = apply_filters( 'elementor/finder/categories', $categories_data );
 
 		return [

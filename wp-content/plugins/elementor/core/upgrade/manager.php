@@ -9,14 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Manager extends DB_Upgrades_Manager {
 
-	/**
-	 * @deprecated 3.17.0
-	 */
 	const INSTALLS_HISTORY_META = 'elementor_install_history';
-
-	public static function get_install_history_meta() {
-		return 'elementor_install_history';
-	}
 
 	// todo: remove in future releases
 	public function should_upgrade() {
@@ -40,11 +33,11 @@ class Manager extends DB_Upgrades_Manager {
 	}
 
 	public function get_plugin_label() {
-		return esc_html__( 'Elementor', 'elementor' );
+		return __( 'Elementor', 'elementor' );
 	}
 
 	public function get_updater_label() {
-		return esc_html__( 'Elementor Data Updater', 'elementor' );
+		return sprintf( '<strong>%s </strong> &#8211;', __( 'Elementor Data Updater', 'elementor' ) );
 	}
 
 	public function get_new_version() {
@@ -60,17 +53,13 @@ class Manager extends DB_Upgrades_Manager {
 	}
 
 	public static function get_installs_history() {
-		return get_option( static::get_install_history_meta(), [] );
+		return get_option( self::INSTALLS_HISTORY_META, [] );
 	}
 
 	public static function install_compare( $version, $operator ) {
 		$installs_history = self::get_installs_history();
 
-		return version_compare(
-			key( $installs_history ),
-			$version ? $version : '0.0.0', // when no version assigned
-			$operator
-		);
+		return version_compare( key( $installs_history ), $version, $operator );
 	}
 
 	protected function update_db_version() {
@@ -91,6 +80,6 @@ class Manager extends DB_Upgrades_Manager {
 
 		uksort( $installs_history, 'version_compare' );
 
-		update_option( static::get_install_history_meta(), $installs_history );
+		update_option( self::INSTALLS_HISTORY_META, $installs_history );
 	}
 }

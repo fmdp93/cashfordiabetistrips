@@ -1,8 +1,6 @@
 <?php
 namespace Elementor\Core\Base;
 
-use Elementor\Plugin;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -126,11 +124,8 @@ abstract class Module extends Base_Object {
 	 * @access public
 	 */
 	public function __clone() {
-		_doing_it_wrong(
-			__FUNCTION__,
-			sprintf( 'Cloning instances of the singleton "%s" class is forbidden.', get_class( $this ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			'1.0.0'
-		);
+		// Cloning instances of the class is forbidden
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Something went wrong.', 'elementor' ), '1.0.0' );
 	}
 
 	/**
@@ -142,11 +137,8 @@ abstract class Module extends Base_Object {
 	 * @access public
 	 */
 	public function __wakeup() {
-		_doing_it_wrong(
-			__FUNCTION__,
-			sprintf( 'Unserializing instances of the singleton "%s" class is forbidden.', get_class( $this ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			'1.0.0'
-		);
+		// Unserializing instances of the class is forbidden
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Something went wrong.', 'elementor' ), '1.0.0' );
 	}
 
 	/**
@@ -308,31 +300,5 @@ abstract class Module extends Base_Object {
 	 */
 	protected function get_assets_relative_url() {
 		return 'assets/';
-	}
-
-	/**
-	 * Get the module's associated widgets.
-	 *
-	 * @return string[]
-	 */
-	protected function get_widgets() {
-		return [];
-	}
-
-	/**
-	 * Initialize the module related widgets.
-	 */
-	public function init_widgets() {
-		$widget_manager = Plugin::instance()->widgets_manager;
-
-		foreach ( $this->get_widgets() as $widget ) {
-			$class_name = $this->get_reflection()->getNamespaceName() . '\Widgets\\' . $widget;
-
-			$widget_manager->register( new $class_name() );
-		}
-	}
-
-	public function __construct() {
-		add_action( 'elementor/widgets/register', [ $this, 'init_widgets' ] );
 	}
 }

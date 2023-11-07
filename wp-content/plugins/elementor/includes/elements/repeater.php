@@ -28,13 +28,6 @@ class Repeater extends Element_Base {
 	private static $counter = 0;
 
 	/**
-	 * Holds the count of the CURRENT instance
-	 *
-	 * @var int
-	 */
-	private $id;
-
-	/**
 	 * Repeater constructor.
 	 *
 	 * Initializing Elementor repeater element.
@@ -48,8 +41,6 @@ class Repeater extends Element_Base {
 	 */
 	public function __construct( array $data = [], array $args = null ) {
 		self::$counter++;
-
-		$this->id = self::$counter;
 
 		parent::__construct( $data, $args );
 
@@ -72,7 +63,7 @@ class Repeater extends Element_Base {
 	 * @return string Repeater name.
 	 */
 	public function get_name() {
-		return 'repeater-' . $this->id;
+		return 'repeater-' . self::$counter;
 	}
 
 	/**
@@ -123,13 +114,13 @@ class Repeater extends Element_Base {
 	 * Retrieve the fields from the current repeater control.
 	 *
 	 * @since 1.5.0
-	 * @deprecated 2.1.0 Use `get_controls()` method instead.
+	 * @deprecated 2.1.0 Use `Repeater::get_controls()` instead.
 	 * @access public
 	 *
 	 * @return array Repeater fields.
 	 */
 	public function get_fields() {
-		_deprecated_function( __METHOD__, '2.1.0', 'get_controls()' );
+		_deprecated_function( __METHOD__, '2.1.0', __CLASS__ . '::get_controls()' );
 
 		return array_values( $this->get_controls() );
 	}

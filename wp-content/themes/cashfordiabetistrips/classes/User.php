@@ -18,7 +18,7 @@ class User
         $this->EditAccountForm = new EditAccountForm();        
         $this->Orders = new Orders();        
 
-        add_action('generate_rewrite_rules', 'eg_add_rewrite_rules');
+        // add_action('generate_rewrite_rules', 'eg_add_rewrite_rules');
         add_action('template_redirect', array($this, 'check_login'));
         add_action('template_redirect', array($this, 'check_logout'));
         add_filter('load_page', array($this, 'load_page'));

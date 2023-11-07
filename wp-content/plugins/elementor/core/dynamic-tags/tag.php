@@ -51,7 +51,7 @@ abstract class Tag extends Base_Tag {
 			endif;
 
 		} elseif ( ! Utils::is_empty( $settings, 'fallback' ) ) {
-			$value = wp_kses_post_deep( $settings['fallback'] );
+			$value = $settings['fallback'];
 		}
 
 		return $value;
@@ -85,37 +85,28 @@ abstract class Tag extends Base_Tag {
 		$this->start_controls_section(
 			'advanced',
 			[
-				'label' => esc_html__( 'Advanced', 'elementor' ),
+				'label' => __( 'Advanced', 'elementor' ),
 			]
 		);
 
 		$this->add_control(
 			'before',
 			[
-				'label' => esc_html__( 'Before', 'elementor' ),
-				'ai' => [
-					'active' => false,
-				],
+				'label' => __( 'Before', 'elementor' ),
 			]
 		);
 
 		$this->add_control(
 			'after',
 			[
-				'label' => esc_html__( 'After', 'elementor' ),
-				'ai' => [
-					'active' => false,
-				],
+				'label' => __( 'After', 'elementor' ),
 			]
 		);
 
 		$this->add_control(
 			'fallback',
 			[
-				'label' => esc_html__( 'Fallback', 'elementor' ),
-				'ai' => [
-					'active' => false,
-				],
+				'label' => __( 'Fallback', 'elementor' ),
 			]
 		);
 
