@@ -7,11 +7,11 @@ get_header();
             <div id="top_categories">
                 <span class="">TOP CATEGORIES</span>
                 <ul>
-                    <li><a href="<?php echo home_url('products-to-sell'); ?>">Sell Products</a></li>
-                    <li><a href="<?php echo home_url("damage-guidelines"); ?>">Damage Guidelines</a></li>
-                    <li><a href="<?php echo home_url() . "shipping-instructions" ?>">Shipping Instructions</a></li>                    
-                    <li><a href="<?php echo home_url() . "faq" ?>">FAQ</a></li>
-                    <li><a href="<?php echo home_url() . "testimonials" ?>">Testimonials</a></li>
+                    <li><a href="<?php echo home_url('/products-to-sell'); ?>">Sell Products</a></li>
+                    <li><a href="<?php echo home_url("/damage-guidelines"); ?>">Damage Guidelines</a></li>
+                    <li><a href="#">Shipping Instructions</a></li>                    
+                    <li><a href="<?php echo home_url("faq") ?>">FAQ</a></li>
+                    <li><a href="<?php echo home_url("/testimonials") ?>">Testimonials</a></li>
                 </ul>
             </div>
         </div>

@@ -1,7 +1,6 @@
 <?php ob_start(); ?>
 <div class="row">
     <?php
-    // dumpre($label);
     if ($products) {
         foreach ($products as $key => $product) {
     ?>

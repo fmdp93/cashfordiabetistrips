@@ -9,7 +9,7 @@ get_header();
                     <li data-target="#products-to-sell-carousel" data-slide-to="0" class="active"></li>
                     <li data-target="#products-to-sell-carousel" data-slide-to="1"></li>
                     <li data-target="#products-to-sell-carousel" data-slide-to="2"></li>
-                </ol>
+                </ol>                
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="d-block w-100" src="<?php echo get_template_directory_uri() . "/assets/img/collection-slider.png" ?>" alt="First slide">

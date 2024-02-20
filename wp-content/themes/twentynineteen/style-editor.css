@@ -493,7 +493,7 @@ body .wp-block[data-align=full] {
 
 /** === Content Width === */
 .wp-block {
-  width: calc(100vw - (2 * 1rem));
+  width: calc(100vw - 2 * 1rem);
   max-width: 100%;
 }
 @media only screen and (min-width: 768px) {
@@ -859,8 +859,8 @@ figcaption,
   color: #767676;
 }
 .wp-block-pullquote.is-style-solid-color blockquote {
-  width: calc(100% - (2 * 1rem));
-  max-width: calc(100% - (2 * 1rem));
+  width: calc(100% - 2 * 1rem);
+  max-width: calc(100% - 2 * 1rem);
 }
 .wp-block-pullquote.is-style-solid-color blockquote a, .wp-block-pullquote.is-style-solid-color blockquote.has-text-color p, .wp-block-pullquote.is-style-solid-color blockquote.has-text-color a {
   color: inherit;
@@ -1171,12 +1171,12 @@ ul.wp-block-archives li ul,
 }
 @media only screen and (min-width: 768px) {
   .wp-block[data-type="core/group"][data-align=wide] > .editor-block-list__block-edit > div > .wp-block-group.has-background > .wp-block-group__inner-container > .editor-inner-blocks > .editor-block-list__layout > .wp-block:not([data-align=wide]):not([data-align=full]) {
-    width: calc(8 * (100vw / 12) - 44px);
+    width: calc(66.6666666667vw - 44px);
   }
 }
 @media only screen and (min-width: 1168px) {
   .wp-block[data-type="core/group"][data-align=wide] > .editor-block-list__block-edit > div > .wp-block-group.has-background > .wp-block-group__inner-container > .editor-inner-blocks > .editor-block-list__layout > .wp-block:not([data-align=wide]):not([data-align=full]) {
-    width: calc(6 * (100vw / 12 ) - 44px);
+    width: calc(50vw - 44px);
   }
 }
 @media only screen and (min-width: 600px) {

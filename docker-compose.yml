@@ -1,0 +1,39 @@
+# Using PHP 8.2 apache
+# Mariadb is external
+
+version: "3.7"
+services:
+  cashfordiabetistrips:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: cashfordiabetistrips
+    restart: always
+    container_name: cashfordiabetistrips
+    # command: ls -la
+    ports:
+      - 80:80
+      - 5500:5500 #WebSocket port
+    volumes:
+      - .:/var/www/html
+      - .docker/php.ini-development:/usr/local/etc/php/php.ini
+      - .docker/vhost.conf:/etc/apache2/sites-available/000-default.conf
+      - .docker/apache2.conf:/etc/apache2/apache2.conf
+      - .docker/hosts:/etc/hosts 
+    networks:
+      - mariadb_network
+    environment:
+      DB_HOST: mariadb
+      DB_DATABASE: php8_2
+      DB_USERNAME: root
+      DB_PASSWORD: password      
+      HOST: "http://php8_2.local"
+      HTTP_COOKIE: "XDEBUG_SESSION=vscode"
+      LOCALPORT: 80
+      HOST_IP: 192.168.1.75
+      XDEBUG_CONFIG: remote_host=192.168.1.75      
+      WS_PORT: "5500"
+
+networks:
+  mariadb_network:
+    external: true

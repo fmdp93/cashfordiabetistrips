@@ -6,6 +6,7 @@
  */
 
 use CashfordiabetistripsPlugin\Admin;
+// from cashfordiabetistrips theme's folder
 use Cashfordiabetistrips\Product;
 
 require_once ABSPATH . 'vendor/autoload.php';

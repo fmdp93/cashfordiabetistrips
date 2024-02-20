@@ -25,8 +25,8 @@
                             <nav class="navbar navbar-expand-xl">
                                 <ul class="navbar-nav ml-auto flex-row">
                                     <li class="nav-item"><span><i class="far fa-newspaper"></i> <a href="#">BLOG</a></span></li>
-                                    <li class="nav-item"><span><i class="far fa-question-circle"></i> <a href="<?php echo home_url('faq') ?>">FAQS</a></span></li>
-                                    <li class="nav-item"><span><i class="fas fa-user"></i> <a href="<?php echo home_url('my-account') ?>">ACCOUNT</a></span></li>
+                                    <li class="nav-item"><span><i class="far fa-question-circle"></i> <a href="<?php echo home_url('/faq') ?>">FAQS</a></span></li>
+                                    <li class="nav-item"><span><i class="fas fa-user"></i> <a href="<?php echo home_url('/my-account') ?>">ACCOUNT</a></span></li>
                                     <li class="nav-item"><span><i class="fas fa-search"></i> <a href="#">SEARCH</a></span></li>
                                 </ul>
                             </nav>
@@ -40,12 +40,12 @@
 
                             <div class="collapse navbar-collapse" id="user_nav_div">
                                 <ul class="navbar-nav ml-auto text-right">
-                                    <li class="nav-item"><span><a href="<?php echo home_url("products-to-sell") ?>">PRODUCTS TO SELL</a></span></li>
+                                    <li class="nav-item"><span><a href="<?php echo home_url("/products-to-sell") ?>">PRODUCTS TO SELL</a></span></li>
                                     <!-- <li class="nav-item"><span><a href="#">FREE SHIPPING KIT</a></span></li> -->
                                     <li class="nav-item"><span><a href="#">SHIPPING INSTRUCTIONS</a></span></li>
                                     <!-- <li class="nav-item"><span><a href="#">INFORMATION GUIDE</a></span></li> -->
-                                    <li class="nav-item"><span><a href="<?php echo home_url('damage-guidelines') ?>">DAMAGE GUIDELINES</a></span></li>
-                                    <li class="nav-item"><span><a href="<?php echo home_url('testimonials') ?>">TESTIMONIALS</a></span></li>
+                                    <li class="nav-item"><span><a href="<?php echo home_url('/damage-guidelines') ?>">DAMAGE GUIDELINES</a></span></li>
+                                    <li class="nav-item"><span><a href="<?php echo home_url('/testimonials') ?>">TESTIMONIALS</a></span></li>
                                 </ul>
                             </div>
                         </nav>

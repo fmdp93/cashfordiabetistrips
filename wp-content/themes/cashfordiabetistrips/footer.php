@@ -12,11 +12,11 @@
                 <h3>LINKS</h3>
                 <ul>
                     <li><a href="<?php echo home_url("products-to-sell"); ?>">Products to sell</a></li>
-                    <li><a href="#">Shipping Instructions</a></li>                    
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Damage Guidelines</a></li>
-                    <li><a href="#">Testimonials</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="<?php echo home_url("/shipping-instructions") ?>">Shipping Instructions</a></li>                    
+                    <li><a href="<?php echo home_url("/faqs") ?>">FAQs</a></li>
+                    <li><a href="<?php echo home_url("/damage-guidelines") ?>">Damage Guidelines</a></li>
+                    <li><a href="<?php echo home_url("/testimonials") ?>">Testimonials</a></li>
+                    <li><a href="<?php echo home_url("/blog") ?>">Blog</a></li>
                 </ul>
             </div>
             <div class="col-12 col-md-3 my-3">

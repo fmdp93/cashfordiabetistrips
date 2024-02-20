@@ -52,6 +52,21 @@ class Admin
 
     public function get_manage_product_page()
     {
+        $page = $_GET['page_num'] ?? 1;        
+        $perPage = 10;
+        $offset = ($page - 1) * $perPage;
+        $paginationSql = "LIMIT $perPage OFFSET $offset";
+        $sql = "SELECT 
+            p.id p_id, p.brand, p.name p_name,
+            p.price, p.quantity,
+            m.name model_name  
+            FROM products p 
+            INNER JOIN models m 
+            ON p.model = m.id 
+            $paginationSql";
+
+        $products = $this->wpdb->get_results($sql);
+
         include $this->Cashfordiabetistrips->plugin_dir . '/template-parts/admin/products.php';
     }
 
@@ -84,11 +99,11 @@ class Admin
 
             // move file            
             if (move_uploaded_file($_FILES['picture']['tmp_name'], $filepath)) {
-                $data = array(                    
+                $data = array(
                     'name' => trim($_POST['name']),
                     'brand' => trim($_POST['brand']),
                     'model' => trim($_POST['model']),
-                    'front_page_title' => trim($_POST['front_page_title']),                    
+                    'front_page_title' => trim($_POST['front_page_title']),
                     'price' => $price,
                     'picture' => $filename,
                     'quantity' => trim($_POST['quantity']),
@@ -111,7 +126,13 @@ class Admin
     {
         do_action("more_admin_enqueue_scripts");
         if (is_admin()) {
-            wp_enqueue_script('ajax-script', get_stylesheet_directory_uri() . '/assets/js/add_product.js', array('jquery'), '1.1', true);
+            wp_enqueue_script(
+                'ajax-script',
+                get_stylesheet_directory_uri() . '/assets/js/add_product.js',
+                array('jquery'),
+                '1.1',
+                true
+            );
 
             wp_localize_script(
                 'ajax-script',

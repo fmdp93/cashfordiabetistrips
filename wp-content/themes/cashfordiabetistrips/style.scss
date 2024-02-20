@@ -258,3 +258,7 @@ footer {
     color: white;
   }
 }
+
+table tr > * {
+  padding: 0.25rem 2rem;
+}
