@@ -1,7 +1,7 @@
 <?php
 get_header();
 ?>
-<div class="container-fluid mt-3 mt-lg-5">
+<main class="container-fluid mt-3 mt-lg-5">
     <div class="row bg-dark p-3 text-white">
         <div class="col-12">
             <div class="col-12 col-md-8 mx-auto">
@@ -31,7 +31,7 @@ get_header();
             </div>
         </div>
     </div>
-</div>
+</main>
 <?php
 get_footer();
 ?>
