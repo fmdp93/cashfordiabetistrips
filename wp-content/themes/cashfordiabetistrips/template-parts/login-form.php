@@ -22,7 +22,7 @@ ob_start();
                     </label>
                 </div>
                 <div>
-                    <a href="<?php echo home_url('lost-password') ?>">Lost your password?</a>
+                    <a href="<?php echo home_url('forgot-password') ?>">Forgot password</a>
                 </div>
             </div>
             <div class="col">
