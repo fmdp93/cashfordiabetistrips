@@ -38,7 +38,7 @@ if (!class_exists('Setup')) {
                 'style',
                 get_template_directory_uri() . '/style.css',
                 array(), //parent has no dependency  
-                '1.0'
+                '1.0.' . microtime()
             );
 
             wp_enqueue_style('aos-css', get_stylesheet_directory_uri() . '/assets/css/aos.css');

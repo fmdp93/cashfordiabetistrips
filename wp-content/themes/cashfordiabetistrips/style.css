@@ -9769,6 +9769,17 @@ a.text-blue-c1:hover, a.text-blue-c1:focus {
   font-family: Oswald;
   src: url("/asset/fonts/Oswald-Regular.ttf");
 }
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}
+
 .container {
   max-width: 1200px;
   font-family: Quicksand;

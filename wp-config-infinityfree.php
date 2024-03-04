@@ -20,13 +20,13 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'if0_35298649_cashfordiabetistrips' );
+define( 'DB_NAME', 'if0_36076753_cashfordiabetistrips' );
 
 /** Database username */
-define( 'DB_USER', 'if0_35298649' );
+define( 'DB_USER', 'if0_36076753' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'REnRz2NDG2b' );
+define( 'DB_PASSWORD', 'D52WZ3I2lnAB' );
 
 /** Database hostname */
 define( 'DB_HOST', 'sql306.infinityfree.com' );

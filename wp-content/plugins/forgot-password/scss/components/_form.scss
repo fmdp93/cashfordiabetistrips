@@ -1,0 +1,9 @@
+form{
+    & > * {
+        max-width: 100%;
+
+        @include sm{
+            max-width: 50ch;
+        }
+    }
+}

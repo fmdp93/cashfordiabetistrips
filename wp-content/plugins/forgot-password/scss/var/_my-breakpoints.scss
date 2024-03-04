@@ -1,0 +1,53 @@
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$fhd: 1900px;
+$qhd: 2500px;
+$uhd: 3800px;
+$uhd8k: 7000px;
+
+@mixin sm{
+    @media (min-width: $sm){
+        @content;
+    }
+}
+@mixin md{
+    @media (min-width: $md){
+        @content;
+    }
+}
+@mixin lg{
+    @media (min-width: $lg){
+        @content;
+    }
+}
+@mixin xl{
+    @media (min-width: $xl){
+        @content;
+    }
+}
+
+@mixin fhd{
+    @media (min-width: $fhd){
+        @content;
+    }
+}
+
+@mixin qhd{
+    @media (min-width: $qhd){
+        @content;
+    }
+}
+
+@mixin uhd{
+    @media (min-width: $uhd){
+        @content;
+    }
+}
+
+@mixin uhd8k{
+    @media (min-width: $uhd8k){
+        @content;
+    }
+}
